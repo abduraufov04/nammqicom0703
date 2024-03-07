@@ -4,8 +4,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
 import { Home as HomeIcon, Group as GroupIcon } from '@mui/icons-material';
+import NestedList from './componentsidebar.js'
+
+
+
 
 const Sidebar = () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const handleListItemClick = (event, index) => {
+    // selectedIndex=index
+    setSelectedIndex(index);
+    // console.log(typeof(selectedIndex),typeof(index));
+  };
   return (
     <Drawer
       variant="permanent"
@@ -20,19 +30,25 @@ const Sidebar = () => {
     >
       <Toolbar />
       <List>
-        <ListItem button component={Link} to="/home">
+        <ListItem button component={Link} to="/home" 
+          selected={selectedIndex === 0}
+          className='Mui-focuVisible'
+          onClick={(event) => handleListItemClick(event, 0)}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Bosh Sahifa" />
         </ListItem>
-        <ListItem button component={Link} to="/group">
+        <ListItem button component={Link} to="/group"
+          selected={selectedIndex === 1}
+          onClick={(event) => handleListItemClick(event, 1)}>
           <ListItemIcon>
             <GroupIcon />
           </ListItemIcon>
-          <ListItemText primary="Group" />
+          <ListItemText primary="Guruhlar" />
         </ListItem>
       </List>
+      <NestedList />
     </Drawer>
   );
 };

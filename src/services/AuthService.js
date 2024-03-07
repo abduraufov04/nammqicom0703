@@ -14,6 +14,7 @@ class AuthService {
         createdAt: new Date().toISOString(),
       };
       this.users.push(newUser);
+      console.log(this.users);
       return newUser;
     }
   

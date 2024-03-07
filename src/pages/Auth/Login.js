@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Container, Grid } from '@mui/material';
-import AuthService from '../services/AuthService';
+import AuthService from './../../services/AuthService';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +27,7 @@ const Login = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div>
+      <div style={{marginTop:'30%', border:'outset' , padding:'20px', borderRadius:'10px', boxShadow: '5px 5px 5px gray'}}>
         <Typography component="h1" variant="h5">
           Login
         </Typography>
@@ -64,6 +65,9 @@ const Login = () => {
             Login
           </Button>
           {error && <Typography variant="body2" color="error">{error}</Typography>}
+          <Typography color="inherit" component={Link} to="/registration">Akkauntingiz yo'qmi?</Typography>
+
+
         </form>
       </div>
     </Container>
