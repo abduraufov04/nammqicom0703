@@ -1,10 +1,6 @@
-// Register.js
-
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Container } from '@mui/material';
 import AuthService from './../../services/AuthService';
-import reCAPTCHA from "react-google-recaptcha"
-
 import { Link } from 'react-router-dom';
 
 const Register = () => {
@@ -30,7 +26,7 @@ const Register = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div style={{marginTop:'30%', border:'outset' , padding:'20px', borderRadius:'10px', boxShadow: '5px 5px 5px gray'}} >
+      <div style={{ marginTop: '30%', border: 'outset', padding: '20px', borderRadius: '10px', boxShadow: '5px 5px 5px gray' }}>
         <Typography component="h1" variant="h5">
           Register
         </Typography>
@@ -69,7 +65,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <reCAPTCHA />
+          {/* Add reCAPTCHA component here if needed */}
           <Button
             type="submit"
             fullWidth
@@ -79,8 +75,7 @@ const Register = () => {
             Register
           </Button>
           {error && <Typography variant="body2" color="error">{error}</Typography>}
-          <Typography color="inherit" component={Link} to="/login">Akkauntingiz bormi?</Typography>
-
+          <Typography color="inherit" component={Link} to="/login">Already have an account? Login</Typography>
         </form>
       </div>
     </Container>

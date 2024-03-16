@@ -17,7 +17,7 @@ const Sidebar = () => {
     // console.log(typeof(selectedIndex),typeof(index));
   };
   return (
-    <Drawer
+    <Drawer style={{top:'30px'}}
       variant="permanent"
       sx={{
         width: 240,

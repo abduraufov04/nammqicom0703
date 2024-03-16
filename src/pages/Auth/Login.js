@@ -1,19 +1,19 @@
 // Login.js
 
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Container, Grid } from '@mui/material';
+import { TextField, Button, Typography, Container } from '@mui/material';
 import AuthService from './../../services/AuthService';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const user = await AuthService.loginUser(email, password);
+      const user = await AuthService.loginUser(username, password);
       if (user) {
         console.log('Login successful:', user);
       } else {
@@ -41,8 +41,8 @@ const Login = () => {
             name="email"
             autoComplete="email"
             autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             margin="normal"

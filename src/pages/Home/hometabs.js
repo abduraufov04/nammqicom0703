@@ -5,6 +5,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import RecipeReviewCard from './maqola';
+import Chat from '../chat/chat';
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -33,7 +34,7 @@ export default function LabTabs() {
 
         </TabPanel>
         <TabPanel value="3">
-            <RecipeReviewCard />
+            <Chat />
         </TabPanel>
       </TabContext>
     </Box>

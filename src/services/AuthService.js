@@ -1,36 +1,59 @@
-// AuthService.js
-
 class AuthService {
-    // Simulated data storage for users
-    static users = [];
-  
-    // Method to register a new user
-    static registerUser(username, email, password) {
-      const newUser = {
-        id: this.users.length + 1,
-        username,
-        email,
-        password,
-        createdAt: new Date().toISOString(),
-      };
-      this.users.push(newUser);
-      console.log(this.users);
-      return newUser;
-    }
-  
-    // Method to login a user
-    static loginUser(email, password) {
-      const user = this.users.find(
-        (user) => user.email === email && user.password === password
-      );
-      return user ? { ...user, password: null } : null;
-    }
-  
-    // Method to get user by ID
-    static getUserById(userId) {
-      return this.users.find((user) => user.id === userId);
-    }
+  // API ning URL manzili
+  static apiUrl = 'https://nammqicommunity.pythonanywhere.com/login/';
+
+  // Method to login a user using the API
+  static async loginUser(username, password) {
+      try {
+          const response = await fetch(this.apiUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ username, password })
+          });
+
+          if (!response.ok) {
+              throw new Error('Login failed');
+          }
+
+          const user = await response.json();
+          return user;
+      } catch (error) {
+          console.error('Error during login:', error.message);
+          return null;
+      }
   }
-  
-  export default AuthService;
-  
+
+
+
+  // API's URL address
+  static apiUrlr = 'https://nammqicommunity.pythonanywhere.com/register/';
+
+  // Method to register a new user using the API
+  static async registerUser(username, email, password) {
+      try {
+          const response = await fetch(this.apiUrlr, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ username, email, password })
+          });
+
+          if (!response.ok) {
+              throw new Error('Registration failed');
+          }
+
+          const user = await response.json();
+          return user;
+      } catch (error) {
+          console.error('Error during registration:', error.message);
+          return null;
+      }
+  }
+}
+
+
+
+export default AuthService;
